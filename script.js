@@ -93,7 +93,6 @@ function generatePassword(userChoices) {
   passwordListElement.value = passwords;
 
 }
-//document.getElementById
 
 ////////////////////////////////////////
 

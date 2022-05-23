@@ -1,7 +1,4 @@
 const passwordListElement = document.getElementById('password');
-// var pw = "khjfbkj"
-
-// passwordListElement.value = pw;
 
 
 // Start the process after the clik of "Generate Password". Deactivate the reloaing page because no data is created here.
@@ -11,7 +8,6 @@ document.getElementById("generate").addEventListener("click", event => {
   //Ask how many caracters they want
   var length = window.prompt("How many characters would  you like your password to contain?")
   // If the answer was smaller than 8, confirm the text //
-
   if (length < 8 || length > 128) {
     window.alert("Password length must be at least 8 character and less than 129 characters");
     return;
@@ -24,7 +20,7 @@ document.getElementById("generate").addEventListener("click", event => {
   var uppercase = window.confirm("Click OK to confirm including uppercase characters")
   //confrim lowercase characters
   var lowercase = window.confirm("Click OK to confirm including lowercase characters.")
-
+ //confrim lowercase characters
   if (numericNumbers === false && specialChar === false && uppercase === false && lowercase === false) {
     window.alert("You must choose at least 1 character type")
     return;
@@ -33,6 +29,7 @@ document.getElementById("generate").addEventListener("click", event => {
   //Stop duplicated/multiple expression of password
   passwordListElement.innerHTML = '';
 
+ // Difining the user choices
   var userChoices = {
     length: length,
     numericNumbers: numericNumbers,
@@ -93,17 +90,3 @@ function generatePassword(userChoices) {
   passwordListElement.value = passwords;
 
 }
-
-////////////////////////////////////////
-
-// Write password to the #password input
-// function writePassword() {
-//   var password = generatePassword();
-//   var passwordText = document.querySelector("#password");
-
-//   passwordText.value = password;
-
-// }
-
-// Add event listener to generate button
-// generateBtn.addEventListener("click", writePassword);

@@ -1,76 +1,99 @@
-const passwordListElement = document.getElementById('generate')
+const passwordListElement = document.getElementById('password');
+// var pw = "khjfbkj"
+
+// passwordListElement.value = pw;
+
 
 // Start the process after the clik of "Generate Password". Deactivate the reloaing page because no data is created here.
 document.getElementById("generate").addEventListener("click", event => {
   event.preventDefault();
 
-  //confirm the numerica characters
-  var generateBtn = window.confirm("Click OK to confirm including numeric characters")
-  // If the answer was smaller than 8, confirm the text //
-  var generateBtn = window.alert("Password length must be at least 8 characters")
-  // Ask including special characters
-  var generateBtn = window.confirm('Click OK to confirm including special characters.');
   //Ask how many caracters they want
-  var passwordLength = window.prompt("How many characters would  you like your password to contain?")
+  var length = window.prompt("How many characters would  you like your password to contain?")
+  // If the answer was smaller than 8, confirm the text //
+
+  if (length < 8 || length > 128) {
+    window.alert("Password length must be at least 8 character and less than 129 characters");
+    return;
+  }
   //confirm the numerica characters
-  var generateBtn = window.confirm("Click OK to confirm including numeric characters")
+  var numericNumbers = window.confirm("Click OK to confirm including numeric characters")
+  // Ask including special characters
+  var specialChar = window.confirm('Click OK to confirm including special characters.');
+  //confirm the Uppercase characters
+  var uppercase = window.confirm("Click OK to confirm including uppercase characters")
   //confrim lowercase characters
-  var generateBtn = window.confirm("Click OK to confirm including lowercase characters.")
+  var lowercase = window.confirm("Click OK to confirm including lowercase characters.")
+
+  if (numericNumbers === false && specialChar === false && uppercase === false && lowercase === false) {
+    window.alert("You must choose at least 1 character type")
+    return;
+  }
 
   //Stop duplicated/multiple expression of password
   passwordListElement.innerHTML = '';
 
-  //Sending the result to HTML
-  const li = document.createElement('li'),
-    input = document.createElement('input');
-  input.value = passwords;
-  li.appendChild(input);
-  passwordListElement.appendChild(li);
+  var userChoices = {
+    length: length,
+    numericNumbers: numericNumbers,
+    uppercase: uppercase,
+    lowercase: lowercase,
+    specialChar: specialChar,
+  }
+
+  generatePassword(userChoices);
+
 })
 
-//Password creation logic
-// making lists of texts and number
-const passwordTexts = [];
-// making lists of small alphabets
-for (let i = 0; i < 26; i++) {
-  passwordTexts.push((String.fromCharCode(('a'.charCodeAt(0)) + i)))
-}
-//making lists of capital aphabets
-for (let i = 0; i < 26; i++) {
-  passwordTexts.push((String.fromCharCode(('A'.charCodeAt(0)) + i)))
-}
-// making lists of numbers
-for (let i = 0; i < 10; i++) {
-  passwordTexts.push(i)
-}
-//making lists of special caracters
-for (let i = 0; i < 20; i++) {
-    passwordTexts.push((String.fromCharCode(('!'.charCodeAt(0)) + i)))
-}
-console.log(passwordTexts)
+function generatePassword(userChoices) {
 
-//Password creatin logic - 2
-// let letters = 'abcdefghijklmnopqrstuvwxyz';
-// let numbers = '0123456789';
-// let symbols = '!#$%&@`+:*?][()'
-// let password = letters + letters.toUpperCase() + numbers + symbols;
-// console.log(password)
+  console.log('Testing choiuces: ', userChoices)
 
-//conditions
-//const passwordListElement = document.getElementById('generate'),
-const passwordLength = 8;
-const generateNumberOfTimes = 1;
+  //Password creation logic
+  // making lists of texts and number
+  const passwordTexts = [];
 
-// Pasword length
-// let passwordLength =(value);
+  // making lists of small alphabets
+  if (userChoices.lowercase === true) {
+    for (let i = 0; i < 26; i++) {
+      passwordTexts.push((String.fromCharCode(('a'.charCodeAt(0)) + i)))
+    }
+  }
+  //making lists of Uppercase
+  if (userChoices.uppercase === true) {
+    for (let i = 0; i < 26; i++) {
+      passwordTexts.push((String.fromCharCode(('A'.charCodeAt(0)) + i)))
+    }
+  }
+  // making lists of numbers
+  if (userChoices.numericNumbers === true) {
+    for (let i = 0; i < 10; i++) {
+      passwordTexts.push(i)
+    }
+  }
+  //making lists of special caracters
+  if (userChoices.specialChar === true) {
+    for (let i = 0; i < 20; i++) {
+      passwordTexts.push((String.fromCharCode(('!'.charCodeAt(0)) + i)))
+    }
+  }
+  console.log(passwordTexts)
 
-//   //Generate random number
-let passwords = '';
-for (let i = 0; i < passwordLength; i++) {
-  passwords += passwordTexts[Math.floor(Math.random() * passwordTexts.length)];
+  const passwordLength = userChoices.length;
+  const generateNumberOfTimes = 1;
+
+
+  //Generate random number
+  let passwords = '';
+  for (let i = 0; i < passwordLength; i++) {
+    passwords += passwordTexts[Math.floor(Math.random() * passwordTexts.length)];
+  }
+  console.log(passwords)
+
+  passwordListElement.value = passwords;
+
 }
-console.log(passwords)
-document.getElementById
+//document.getElementById
 
 ////////////////////////////////////////
 

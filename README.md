@@ -1,7 +1,7 @@
 # Password Generator
 This is a simple password generator. I did the following points;
 1. Ask several questions by window alert
-1-1. Number of characters
+###1-1. Number of characters
 1-2. Numeric numbers
 1-3. Uppercase
 1-4. Lowercase
